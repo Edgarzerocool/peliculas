@@ -101,12 +101,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       bool respuesta = validarDatos(email.value.text,password.value.text);
                       print(respuesta);
                       if(respuesta){
+                        mostrarTextoError = false;
                         Navigator.push(context, MaterialPageRoute(builder: (context) => presentacion(usuarioLogeado: usuarioLogeado)),);
                       }else{
-                        setState(() {
-                          mostrarTextoError = true;
-                        });
+                        mostrarTextoError = true;
                       }
+                      setState(() {
+                      });
                     },
                     child: Text("Ingresar"),
                   ),
