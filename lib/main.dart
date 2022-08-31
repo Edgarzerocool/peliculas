@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool mostrarTextoError = false;
+  late Usuario usuarioLogeado;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       bool respuesta = validarDatos(email.value.text,password.value.text);
                       print(respuesta);
                       if(respuesta){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => presentacion()),);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => presentacion(usuarioLogeado: usuarioLogeado)),);
                       }else{
                         setState(() {
                           mostrarTextoError = true;
@@ -124,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
     usuarios.forEach((element) {
       if(element.email == email && element.password == password){
         print("CORRECTO");
+        usuarioLogeado = element;
         existe =  true;
       }
     });
