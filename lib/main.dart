@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/Utils/usuarios.dart';
+import 'presentacion.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,18 +50,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  bool mostrarTextoError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -78,33 +71,62 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Form(child:
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Form(child:
+              Column(
+                children:  [
+                  TextField(
+                    controller: email,
+                    decoration: const InputDecoration(
+                      label: Text("correo"),
                     ),
-                ),
-                const Text(
-                  'You have pushed the button this many times:',
-                ),
-                Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-              ],
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  TextField(
+                    controller: password,
+                    decoration: const InputDecoration(
+                      label: Text("contraseña"),
+                    ),
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                  ),
+                  Visibility(visible: mostrarTextoError,child: Text("datos incorrectos")),
+                  OutlinedButton(
+                    onPressed: (){
+                      bool respuesta = validarDatos(email.value.text,password.value.text);
+                      print(respuesta);
+                      if(respuesta){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => presentacion()),);
+                      }else{
+                        setState(() {
+                          mostrarTextoError = true;
+                        });
+                      }
+                    },
+                    child: Text("Ingresar"),
+                  ),
+                ],
+              ),
+              ),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ) // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  bool validarDatos(String email, String password) {
+    bool existe = false;
+    usuarios.forEach((element) {
+      if(element.email == email && element.password == password){
+        print("CORRECTO");
+        existe =  true;
+      }
+    });
+    return existe;
   }
 }
