@@ -77,8 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Form(child:
-              Column(
+              child: Column(
                 children:  [
                   TextField(
                     controller: email,
@@ -112,7 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text("Ingresar"),
                   ),
                 ],
-              ),
               ),
             ),
           ],
