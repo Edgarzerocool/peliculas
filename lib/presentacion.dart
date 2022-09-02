@@ -4,9 +4,9 @@ import 'package:peliculas/Utils/usuarios.dart';
 import 'package:peliculas/listaPeliculas.dart';
 import 'package:peliculas/otravista.dart';
 
-class presentacion extends StatelessWidget{
+class Presentacion extends StatelessWidget{
   final Usuario usuarioLogeado;
-  const presentacion({Key? key, required this.usuarioLogeado}) : super(key: key);
+  const Presentacion({Key? key, required this.usuarioLogeado}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,8 @@ class presentacion extends StatelessWidget{
               children: [
                 Text("Bienvenido ${usuarioLogeado.nombre}"),
                 IconButton(color: Colors.white, onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => otravista(usuarioLogeado: usuarioLogeado)),);
-                }, icon: Icon(Icons.person_pin)),
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => OtraVista(usuarioLogeado: usuarioLogeado)),);
+                }, icon: const Icon(Icons.person_pin)),
               ],
             ),
           ],
@@ -36,7 +36,7 @@ class presentacion extends StatelessWidget{
               child: CupertinoButton(
                 color: Colors.blue,
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => listaPeliculas()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ListaPeliculas()));
                 }, child: const Text("Más Vistas"),
               ),
             ),
@@ -45,7 +45,7 @@ class presentacion extends StatelessWidget{
               child: CupertinoButton(
                 color: Colors.blue,
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => listaPeliculas()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ListaPeliculas()));
                 }, child: const Text("Más Populares"),
               ),
             ),

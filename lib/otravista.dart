@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:peliculas/Utils/funciones.dart';
 import 'package:peliculas/Utils/usuarios.dart';
 
-class otravista extends StatefulWidget {
+class OtraVista extends StatefulWidget {
   Usuario usuarioLogeado;
-  otravista({Key? key, required this.usuarioLogeado}) : super(key: key);
+  OtraVista({Key? key, required this.usuarioLogeado}) : super(key: key);
 
   @override
-  State<otravista> createState() => _otravistaState();
+  State<OtraVista> createState() => _OtraVistaState();
 }
 
-class _otravistaState extends State<otravista> {
+class _OtraVistaState extends State<OtraVista> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -49,14 +49,14 @@ class _otravistaState extends State<otravista> {
                       mostrarAlerta = true;
                       },
                     color: Colors.blue,
-                    child: Text("Editar"),
+                    child: const Text("Editar"),
                   ),
                 ),
                 Visibility(
                   visible: mostrarAlerta,
                   child: AlertDialog(
-                    title: Text("Datos modificados"),
-                    content: Text("Desea salir?"),
+                    title: const Text("Datos modificados"),
+                    content: const Text("Desea salir?"),
                     actions: [
                       ElevatedButton(onPressed: (){
                         mostrarAlerta = false;

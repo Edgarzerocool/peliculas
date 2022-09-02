@@ -94,21 +94,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                   ),
-                  Visibility(visible: mostrarTextoError,child: Text("datos incorrectos")),
+                  Visibility(visible: mostrarTextoError,child: const Text("datos incorrectos")),
                   OutlinedButton(
                     onPressed: (){
                       bool respuesta = validarDatos(email.value.text,password.value.text);
-                      print(respuesta);
                       if(respuesta){
                         mostrarTextoError = false;
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => presentacion(usuarioLogeado: usuarioLogeado)),);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Presentacion(usuarioLogeado: usuarioLogeado)),);
                       }else{
                         mostrarTextoError = true;
                       }
                       setState(() {
                       });
                     },
-                    child: Text("Ingresar"),
+                    child: const Text("Ingresar"),
                   ),
                 ],
               ),
@@ -121,13 +120,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool validarDatos(String email, String password) {
     bool existe = false;
-    usuarios.forEach((element) {
+    for (var element in usuarios) {
       if(element.email == email && element.password == password){
-        print("CORRECTO");
         usuarioLogeado = element;
         existe =  true;
       }
-    });
+    }
     return existe;
   }
 }
