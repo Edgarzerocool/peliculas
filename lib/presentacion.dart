@@ -29,6 +29,7 @@ class Presentacion extends StatelessWidget{
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children:  [
             const Text("Elige el catalogo de peliculas que deseas ver:"),
             Padding(
@@ -36,7 +37,7 @@ class Presentacion extends StatelessWidget{
               child: CupertinoButton(
                 color: Colors.blue,
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ListaPeliculas()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ListaPeliculas(tipo: "Más Vistas")));
                 }, child: const Text("Más Vistas"),
               ),
             ),
@@ -45,7 +46,7 @@ class Presentacion extends StatelessWidget{
               child: CupertinoButton(
                 color: Colors.blue,
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ListaPeliculas()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ListaPeliculas(tipo: "Más Populares")));
                 }, child: const Text("Más Populares"),
               ),
             ),
